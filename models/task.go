@@ -8,7 +8,7 @@ import (
 type taskType string
 
 const (
-	wait = "wait"
+	wait taskType = "wait"
 )
 
 type task struct {
