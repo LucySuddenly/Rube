@@ -8,16 +8,24 @@ import (
 )
 
 
-func Handler() http.Handler {
+func Handler(cfg *Config) http.Handler {
 	routes := mux.NewRouter()
 	routes.StrictSlash(true)
 
-	// routes go here
+	svc := NewService(cfg)
 
-	return http.TimeoutHandler(Service(routes), 25*time.Second, "Timed out performing request")
+	// routes go here
+	routes.Handle("/ping", http.HandlerFunc(svc.ping))
+
+	return http.TimeoutHandler(WithDebug(routes), 25*time.Second, "Timed out performing request")
 }
 
-func Service(h http.Handler) http.Handler {
+func (s *Service) ping (w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("pong"))
+	w.WriteHeader(200)
+}
+
+func WithDebug(h http.Handler) http.Handler {
 	router := mux.NewRouter()
 	router.PathPrefix("/debug/pprof").Handler(pprofHandler())
 	// todo: add health, metrics, and swagger

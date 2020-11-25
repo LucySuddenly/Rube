@@ -23,7 +23,7 @@ func main(){
 
 	srv := http.Server{
 		Addr:              ":" + cfg.Port,
-		Handler:           rube.Handler(),
+		Handler:           rube.Handler(cfg),
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
 		IdleTimeout:  30 * time.Second,
