@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	//"github.com/LucySuddenly/rube/internal"
+	"github.com/lucysuddenly/rube/internal/rube"
 )
 
 func main(){
