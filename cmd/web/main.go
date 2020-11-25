@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/lucysuddenly/rube/internal/rube"
 	"log"
 	"net/http"
@@ -24,7 +23,7 @@ func main(){
 
 	srv := http.Server{
 		Addr:              ":" + cfg.Port,
-		Handler:           nil,
+		Handler:           rube.Handler(),
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
 		IdleTimeout:  30 * time.Second,
