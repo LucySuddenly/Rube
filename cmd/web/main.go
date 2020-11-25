@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/lucysuddenly/rube/internal/rube"
 	"log"
 	"net/http"
@@ -42,6 +43,7 @@ func main(){
 
 	// start server
 	err = srv.ListenAndServe()
+	fmt.Print("starting server on port "+cfg.Port)
 	if err != nil && err != http.ErrServerClosed {
 		log.Printf("shutting down on interrupt, err: %s, info: %+v", err.Error(), ctx)
 		return
