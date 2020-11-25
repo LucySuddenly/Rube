@@ -16,13 +16,17 @@ func Handler(cfg *Config) http.Handler {
 
 	// routes go here
 	routes.Handle("/ping", http.HandlerFunc(svc.ping))
+	routes.Handle("/generate", http.HandlerFunc(svc.generate))
 
 	return http.TimeoutHandler(withDebug(routes), 25*time.Second, "Timed out performing request")
 }
 
+func (s *Service) generate(w http.ResponseWriter, r *http.Request) {
+	panic("implement me")
+}
+
 func (s *Service) ping(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("pong"))
-	w.WriteHeader(200)
 }
 
 func withDebug(h http.Handler) http.Handler {
