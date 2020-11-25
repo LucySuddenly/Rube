@@ -42,8 +42,8 @@ func main(){
 	}()
 
 	// start server
-	err = srv.ListenAndServe()
 	fmt.Print("starting server on port "+cfg.Port)
+	err = srv.ListenAndServe()
 	if err != nil && err != http.ErrServerClosed {
 		log.Printf("shutting down on interrupt, err: %s, info: %+v", err.Error(), ctx)
 		return
